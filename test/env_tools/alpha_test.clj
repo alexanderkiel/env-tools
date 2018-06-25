@@ -1,9 +1,12 @@
 (ns env-tools.alpha-test
   (:require
     [clojure.spec.alpha :as s]
+    [clojure.spec.test.alpha :as st]
     [clojure.test :refer :all]
     [env-tools.alpha :refer [build-config]]
     [juxt.iota :refer [given]]))
+
+(st/instrument)
 
 (s/def ::host
   string?)

@@ -5,13 +5,13 @@
 
 ;; A key as it appears
 (s/def ::env-key
-  (s/and string? #(re-matches #"[A-Z_]+" %)))
+  (s/and string? #(re-matches #"[A-Z0-9_]+" %)))
 
 (s/def ::env
   (s/map-of ::env-key string?))
 
 (s/def ::env-key-seq
-  (s/coll-of (s/and string? #(re-matches #"[A-Z]+" %))))
+  (s/coll-of (s/and string? #(re-matches #"[A-Z0-9]+" %))))
 
 (s/def ::prepared-env
   (s/map-of ::env-key-seq string?))
