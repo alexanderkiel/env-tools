@@ -21,7 +21,7 @@ The assumption is that you have several components in your application, all need
   )
 ```
 
-In the above example, we have defined the function `database` which will initialize the database using the supplied config. Furthermore we wrote specs for the `database` function. We named the spec `:config/database` because we like to use it in a `keys` spec describing the whole config as nested map structure.
+In the above example, we defined the function `database` which will initialize the database using the supplied config. Furthermore we wrote specs for the `database` function. We named the spec `:config/database` because we like to use it in a `keys` spec describing the whole config as nested map structure.
 
 ```clojure
 (s/def ::config
@@ -35,7 +35,7 @@ Above you see the `::config` spec describing a data structure like this:
    {:host "localhost"}}
 ```
 
-Env Tools provides the function `build-config` which takes a spec and builds the config map from the environment. Assuming an environment like this:
+Env Tools provides the function `build-config` which takes a spec and builds a config map from the environment. Assuming an environment like this:
 
 ```bash
 DATABASE_HOST="localhost"
@@ -56,7 +56,7 @@ will return:
    {:host "localhost"}}
 ```
 
-A already said, the structure of the resulting data structure is derived from the specs used. In our example, we used two nested `keys` specs: `(s/keys :req-un [:config/database])` which expects the key `:database` with values following the spec `:config/database` while the `:config/database` spec expects the key `:host` to be a string. The function `build-config` takes those specs and searches the environment for the key `DATABASE_HOST` which is composed of the two keys `:database` and `:host`. If it finds a value, it will return it, otherwise it returns nothing. That said, `build-config` returns at most what your supplied spec defines. You never get the whole environment. So `build-config` is like a query on the environment using spec as query language.
+As already said, the structure of the resulting data structure is derived from the specs used. In our example, we used two nested `keys` specs: `(s/keys :req-un [:config/database])` which expects the key `:database` with values following the spec `:config/database` while the `:config/database` spec expects the key `:host` to be a string. The function `build-config` takes those specs and searches the environment for the key `DATABASE_HOST` which is composed of the two keys `:database` and `:host`. If it finds a value, it will return it, otherwise it returns nothing. That said, `build-config` returns at most what your supplied spec defines. You never get the whole environment. So `build-config` is like a query on the environment using spec as a query language.
 
 ## Supported Specs
 
