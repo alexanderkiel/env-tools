@@ -3,13 +3,6 @@
     [clojure.spec.alpha :as s]
     [clojure.string :as str]))
 
-;; A key as it appears
-(s/def ::env-key
-  (s/and string? #(re-matches #"[A-Z0-9_]+" %)))
-
-(s/def ::env
-  (s/map-of ::env-key string?))
-
 (s/def ::env-key-seq
   (s/coll-of (s/and string? #(re-matches #"[A-Z0-9]+" %))))
 
@@ -20,7 +13,7 @@
   "Transducer which splits string keys in kv-pairs by underscore."
   (map
     (fn [[k v]]
-      [(str/split k #"_") v])))
+      [(str/split (str/upper-case k) #"_") v])))
 
 (defn- envize
   "Converts strings to uppercase and splits them by dash.
