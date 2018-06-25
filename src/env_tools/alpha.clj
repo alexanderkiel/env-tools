@@ -4,7 +4,7 @@
     [clojure.string :as str]))
 
 (s/def ::env-key-seq
-  (s/coll-of (s/and string? #(re-matches #"[A-Z0-9]+" %))))
+  (s/coll-of (s/and string? #(re-matches #"[A-Z0-9]*" %))))
 
 (s/def ::prepared-env
   (s/map-of ::env-key-seq string?))
