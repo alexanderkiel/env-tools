@@ -1,5 +1,5 @@
 (defproject env-tools "0.1-SNAPSHOT"
-  :description "Library for managing environment variables in Clojure (like Environ)"
+  :description "Library building nested configuration maps from the environment"
   :url "http://git.life.uni-leipzig.local/clojure/env-tools"
 
   :min-lein-version "2.0.0"
