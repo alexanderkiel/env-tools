@@ -16,5 +16,13 @@
    {:dependencies
     [[juxt/iota "0.2.3"]]}}
 
+  :deploy-repositories
+  [["life-snapshots"
+    {:url "https://portal.life.uni-leipzig.de/content/repositories/snapshots"
+     :sign-releases false}]
+   ["life-releases"
+    {:url "https://portal.life.uni-leipzig.de/content/repositories/releases"
+     :sign-releases false}]]
+
   :aliases
   {"lint" ["eastwood" "{}"]})
