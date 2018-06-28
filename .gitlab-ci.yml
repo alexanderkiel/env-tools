@@ -11,3 +11,12 @@ test:
     - lein check
     - lein lint
     - lein test
+
+test-clj-1.10:
+  stage: test
+  tags:
+    - docker
+  script:
+    - lein with-profile +clj-1.10 check
+    - lein with-profile +clj-1.10 lint
+    - lein with-profile +clj-1.10 test

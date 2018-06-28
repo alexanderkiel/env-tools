@@ -6,7 +6,7 @@
   :pedantic? :abort
 
   :dependencies
-  [[org.clojure/clojure "1.9.0"]]
+  [[org.clojure/spec.alpha "0.2.168"]]
 
   :plugins
   [[jonase/eastwood "0.2.6" :exclusions [org.clojure/clojure]]]
@@ -14,7 +14,11 @@
   :profiles
   {:dev
    {:dependencies
-    [[juxt/iota "0.2.3"]]}}
+    [[org.clojure/clojure "1.9.0"]
+     [juxt/iota "0.2.3"]]}
+   :clj-1.10
+   {:dependencies
+    [[org.clojure/clojure "1.10.0-alpha5"]]}}
 
   :deploy-repositories
   [["life-snapshots"
