@@ -16,11 +16,11 @@
       [(str/split (str/upper-case k) #"_") v])))
 
 (defn- envize
-  "Converts strings to uppercase and splits them by dash.
+  "Converts strings to uppercase and splits them by dash or period.
 
   The resulting sequence fits the key sequences from `prepare-env`."
   [s]
-  (-> s str/upper-case (str/split #"-")))
+  (-> s str/upper-case (str/split #"[-.]")))
 
 (s/fdef sub-env
   :args (s/cat :prefix ::env-key-seq :env (s/nilable ::prepared-env))
@@ -98,7 +98,17 @@
              (fn [config [operator keys]]
                (case operator
                  (:req :opt)
-                 config
+                 (reduce
+                   (fn [config key]
+                     (let [prefix (into (envize (namespace key)) (envize (name key)))
+                           sub-env (sub-env prefix env)]
+                       (if (or (map? sub-env) (nil? sub-env))
+                         (if-let [sub-config (build-config key (merge env sub-env))]
+                           (assoc config key sub-config)
+                           config)
+                         (assoc config key sub-env))))
+                   config
+                   keys)
                  (:req-un :opt-un)
                  (reduce
                    (fn [config key]

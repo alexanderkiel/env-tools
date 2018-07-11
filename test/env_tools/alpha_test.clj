@@ -70,6 +70,18 @@
 (s/def ::with-coll-of-databases
   (s/keys :req-un [::databases]))
 
+(s/def :database/host
+  string?)
+
+(s/def :database/port
+  string?)
+
+(s/def :nsq/database
+  (s/keys :req [:database/host :database/port]))
+
+(s/def ::with-nsq-database
+  (s/keys :req-un [:nsq/database]))
+
 (deftest build-config-test
   (testing "Simple `keys` spec"
     (given (build-config ::host-only {["HOST"] "host-140945"})
@@ -141,4 +153,12 @@
       [:databases first :host] := "host-1-155343"
       [:databases first :port] := "port-1-155508"
       [:databases second :host] := "host-2-155354"
-      [:databases second :port] := "port-2-155503")))
+      [:databases second :port] := "port-2-155503"))
+
+  (testing "namespace qualified key is found top-level"
+    (given (build-config ::with-nsq-database {["DATABASE" "HOST"] "host-114151"})
+      [:database :database/host] := "host-114151"))
+
+  (testing "namespace qualified key is found under DATABASE"
+    (given (build-config ::with-nsq-database {["DATABASE" "DATABASE" "HOST"] "host-114158"})
+      [:database :database/host] := "host-114158")))
