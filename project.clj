@@ -1,4 +1,4 @@
-(defproject env-tools "0.1-SNAPSHOT"
+(defproject env-tools "0.1"
   :description "Library building nested configuration maps from the environment"
   :url "http://git.life.uni-leipzig.local/clojure/env-tools"
 
