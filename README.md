@@ -2,6 +2,12 @@
 
 Env Tools is a library which builds nested configuration maps from a flat list of traditional environment variables. Env Tools uses [Specs][1] to derive the required structure.
 
+## Rationale
+
+TODO
+
+## Usage
+
 The assumption is that you have several components in your application, all needing a config map at initialization.
 
 ```clojure
