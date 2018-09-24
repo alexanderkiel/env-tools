@@ -120,7 +120,7 @@
                          (assoc config (remove-kw-ns key) sub-env))))
                    config
                    keys)))
-             nil
+             {}
              (partition 2 rest-form))
 
            ;; look into the multi-spec by extracting the tag from env

@@ -83,6 +83,9 @@
   (s/keys :req-un [:nsq/database]))
 
 (deftest build-config-test
+  (testing "Returns empty map on non-matching env vars."
+    (is (map? (build-config ::host-only {}))))
+
   (testing "Simple `keys` spec"
     (given (build-config ::host-only {["HOST"] "host-140945"})
       :host := "host-140945"))
