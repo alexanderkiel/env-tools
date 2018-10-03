@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/alexanderkiel/env-tools.svg?branch=master)](https://travis-ci.org/alexanderkiel/env-tools)
+
 # Env Tools
 
 Env Tools is a library which builds nested configuration maps from a flat list of traditional environment variables. Env Tools uses [Specs][1] to derive the required structure.
@@ -9,7 +11,7 @@ TODO
 ## Install
 
 ```clojure
-[env-tools "0.1"]
+[env-tools "0.2"]
 ```
 
 ## Usage
