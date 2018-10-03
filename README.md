@@ -76,4 +76,11 @@ Env Tools interprets your specs in order to extract the right values from the en
 
 TODO
 
+## License
+
+Copyright © 2018 Alexander Kiel
+
+Distributed under the Eclipse Public License either version 1.0 or (at
+your option) any later version.
+
 [1]: <https://clojure.org/guides/spec>
