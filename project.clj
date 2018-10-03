@@ -1,4 +1,4 @@
-(defproject org.clojars.akiel/env-tools "0.2-SNAPSHOT"
+(defproject org.clojars.akiel/env-tools "0.2"
   :description "Library building nested configuration maps from the environment"
   :url "http://git.life.uni-leipzig.local/clojure/env-tools"
 
