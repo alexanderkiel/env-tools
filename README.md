@@ -11,7 +11,7 @@ TODO
 ## Install
 
 ```clojure
-[org.clojars.akiel/env-tools "0.2"]
+[org.clojars.akiel/env-tools "0.2.1"]
 ```
 
 ## Usage
