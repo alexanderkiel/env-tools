@@ -82,6 +82,9 @@
 (s/def ::with-nsq-database
   (s/keys :req-un [:nsq/database]))
 
+(s/def ::issue-1
+  (s/keys :req-un [(and :database/host :database/port)]))
+
 (deftest build-config-test
   (testing "Returns empty map on non-matching env vars."
     (is (map? (build-config ::host-only {}))))
@@ -164,4 +167,7 @@
 
   (testing "namespace qualified key is found under DATABASE"
     (given (build-config ::with-nsq-database {["DATABASE" "DATABASE" "HOST"] "host-114158"})
-      [:database :database/host] := "host-114158")))
+      [:database :database/host] := "host-114158"))
+
+  (testing "Issue 1"
+    (given (build-config ::issue-1 {}))))

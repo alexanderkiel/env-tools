@@ -95,31 +95,32 @@
            ;; sub-env will be either maps or scalar
            `s/keys
            (reduce
-             (fn [config [operator keys]]
-               (case operator
-                 (:req :opt)
-                 (reduce
-                   (fn [config key]
-                     (let [prefix (into (envize (namespace key)) (envize (name key)))
-                           sub-env (sub-env prefix env)]
-                       (if (or (map? sub-env) (nil? sub-env))
-                         (if-let [sub-config (build-config key (merge env sub-env))]
-                           (assoc config key sub-config)
-                           config)
-                         (assoc config key sub-env))))
-                   config
-                   keys)
-                 (:req-un :opt-un)
-                 (reduce
-                   (fn [config key]
-                     (let [sub-env (sub-env (envize (name key)) env)]
-                       (if (or (map? sub-env) (nil? sub-env))
-                         (if-let [sub-config (build-config key (merge env sub-env))]
-                           (assoc config (remove-kw-ns key) sub-config)
-                           config)
-                         (assoc config (remove-kw-ns key) sub-env))))
-                   config
-                   keys)))
+             (fn [config [operator key-forms]]
+               (let [keys (filter keyword? (flatten key-forms))]
+                 (case operator
+                   (:req :opt)
+                   (reduce
+                     (fn [config key]
+                       (let [prefix (into (envize (namespace key)) (envize (name key)))
+                             sub-env (sub-env prefix env)]
+                         (if (or (map? sub-env) (nil? sub-env))
+                           (if-let [sub-config (build-config key (merge env sub-env))]
+                             (assoc config key sub-config)
+                             config)
+                           (assoc config key sub-env))))
+                     config
+                     keys)
+                   (:req-un :opt-un)
+                   (reduce
+                     (fn [config key]
+                       (let [sub-env (sub-env (envize (name key)) env)]
+                         (if (or (map? sub-env) (nil? sub-env))
+                           (if-let [sub-config (build-config key (merge env sub-env))]
+                             (assoc config (remove-kw-ns key) sub-config)
+                             config)
+                           (assoc config (remove-kw-ns key) sub-env))))
+                     config
+                     keys))))
              {}
              (partition 2 rest-form))
 
