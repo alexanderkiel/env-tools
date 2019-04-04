@@ -6,4 +6,5 @@ jdk:
   - oraclejdk9
 lein: 2.8.1
 script:
+- lein check
   - lein test

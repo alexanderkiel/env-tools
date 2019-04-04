@@ -6,7 +6,7 @@
   :pedantic? :abort
 
   :dependencies
-  [[org.clojure/spec.alpha "0.2.168"]]
+  [[org.clojure/spec.alpha "0.2.176"]]
 
   :plugins
   [[jonase/eastwood "0.2.6" :exclusions [org.clojure/clojure]]]
@@ -14,11 +14,8 @@
   :profiles
   {:dev
    {:dependencies
-    [[org.clojure/clojure "1.9.0"]
-     [juxt/iota "0.2.3"]]}
-   :clj-1.10
-   {:dependencies
-    [[org.clojure/clojure "1.10.0-alpha5"]]}}
+    [[org.clojure/clojure "1.10.0"]
+     [juxt/iota "0.2.3"]]}}
 
   :aliases
   {"lint" ["eastwood" "{}"]})
