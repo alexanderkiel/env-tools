@@ -17,7 +17,7 @@
   :profiles
   {:dev
    {:dependencies
-    [[org.clojure/clojure "1.10.0"]
+    [[org.clojure/clojure "1.10.1"]
      [juxt/iota "0.2.3"]]}}
 
   :aliases
