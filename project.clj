@@ -1,6 +1,9 @@
 (defproject org.clojars.akiel/env-tools "0.3-SNAPSHOT"
   :description "Library building nested configuration maps from the environment"
-  :url "http://git.life.uni-leipzig.local/clojure/env-tools"
+  :url "https://github.com/alexanderkiel/env-tools"
+
+  :license {:name "Apache License"
+            :url "http://www.apache.org/licenses/LICENSE-2.0"}
 
   :min-lein-version "2.0.0"
   :pedantic? :abort
